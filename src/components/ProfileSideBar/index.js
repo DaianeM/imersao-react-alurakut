@@ -8,7 +8,7 @@ function ProfileSideBar(props){
         <img src={`https://github.com/${props.githubUser}.png`} alt="Foto de perfil do usuário" style={{borderRadius: '10px'}}/>
         <hr/>
         
-        <a className="boxLink" href={`https://github.com/${props.githubUser}`}>
+        <a className="boxLink" href={`https://github.com/${props.githubUser}`} target="_blank">
           @{props.githubUser}
         </a>
         <hr/>
