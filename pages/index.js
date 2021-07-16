@@ -57,9 +57,6 @@ export default function Home(props) {
         const comunidadesDato = respostaCompleta.data.allCommunities;
         setComunidades(comunidadesDato);
       })
-
-
-
     }, [])
 
 
@@ -168,15 +165,14 @@ export default function Home(props) {
 
 export async function getServerSideProps(context){
   const cookies = nookies.get(context);  
-  console.log(cookies)
   const token = cookies.USER_TOKEN ;
-  console.log(token);
-
   const { githubUser } = jwt.decode(token);
 
   return{
     props: {
       githubUser
-    },
+    }
   }
+  
 }
+
