@@ -9,8 +9,6 @@ export default function Login(){
 
     const [githubUser,setGithubUser] = useState('');
 
-
-
     function handleLogin(event){
         event.preventDefault();
 
@@ -31,7 +29,6 @@ export default function Login(){
             router.push('/');
             
         })
-       
     }
 
 
@@ -77,3 +74,5 @@ export default function Login(){
       </main>
     );
 }
+
+
