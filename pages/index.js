@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import nookies from 'nookies';
+import jwt from 'jsonwebtoken';
 
 import { AlurakutMenu, OrkutNostalgicIconSet} from '../src/lib/AlurakutCommons';
 
@@ -9,8 +11,9 @@ import Box from '../src/components/Box';
 import ProfileRelationsBox from '../src/components/ProfileRelationsBox';
 
 
-export default function Home() {
-    const githubUser = "DaianeM";
+
+export default function Home(props) {
+    const githubUser = props.githubUser;
     const pessoasFavoritas = [
       'juunegreiros', 'omariosouto', 
       'peas', 'rafaballerini', 
@@ -24,7 +27,7 @@ export default function Home() {
     
     useEffect(()=>{
       // api GITHUB
-      fetch('https://api.github.com/users/DaianeM/followers')
+      fetch(`https://api.github.com/users/${githubUser}/followers`)
       .then((responseServidor)=>{
         return responseServidor.json();
       })
@@ -61,7 +64,7 @@ export default function Home() {
 
 
     return(
-      <>
+      <div className="home">
         <AlurakutMenu/>
         <MainGrid>
           <div className="profileArea" style={{gridArea: 'profileArea'}}>
@@ -74,6 +77,7 @@ export default function Home() {
             </Box>
             <Box>
               <h2 className="subTitle">O que você deseja fazer?</h2>
+              
               <form onSubmit={function handleCriaComunidade(event){
                 event.preventDefault();
 
@@ -158,6 +162,21 @@ export default function Home() {
               </ProfileRelationsBoxWrapper>
           </div>
         </MainGrid>
-      </>
+      </div>
     );
+}
+
+export async function getServerSideProps(context){
+  const cookies = nookies.get(context);  
+  console.log(cookies)
+  const token = cookies.USER_TOKEN ;
+  console.log(token);
+
+  const { githubUser } = jwt.decode(token);
+
+  return{
+    props: {
+      githubUser
+    },
+  }
 }

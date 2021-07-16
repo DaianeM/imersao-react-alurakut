@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 
 const MainGrid = styled.main`
+    background-color: #CEA2FD;
     width: 100%;
     grid-gap: 10px;
     margin-left: auto;
