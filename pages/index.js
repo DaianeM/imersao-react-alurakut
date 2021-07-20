@@ -165,14 +165,7 @@ export async function getServerSideProps(context){
   const cookies = nookies.get(context);  
   const token = cookies.USER_TOKEN ;
 
-  const { githubUser } = jwt.decode(token);
-  return{
-    props: {
-      githubUser
-    }
-  }
-
-  /*const { isAuthenticated } = await fetch('https://alurakut.vercel.app/api/auth', {
+  const { isAuthenticated } = await fetch('https://alurakut.vercel.app/api/auth', {
     headers: {
         Authorization: token
       }
@@ -187,6 +180,13 @@ export async function getServerSideProps(context){
         permanent: false,
       }
     }
-  }*/
+  }
+
+  const { githubUser } = jwt.decode(token);
+  return{
+    props: {
+      githubUser
+    }
+  }
 
 }

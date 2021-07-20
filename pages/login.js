@@ -49,7 +49,7 @@ export default function Login(){
                 </p>
                 <input 
                     placeholder="GitHub user" 
-                    value={githubUser} 
+                    value='DaianeM' 
                     onChange={(event)=> setGithubUser(event.target.value)} 
                 />
                 <button type="submit">Login</button>
